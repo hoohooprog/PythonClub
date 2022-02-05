@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import psycopg2
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t7c3czak)uwdg&azrq3l-md)cm%0x1g5k^vp2_hz_z-b4(zb6p'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Club.apps.ClubConfig'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +78,12 @@ WSGI_APPLICATION = 'PythonClub.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER' : config('DB_USER'),
+        'PASSWORD' : config('DB_PASSWORD'),
+        'HOST' : config('DB_HOST'),
+        'PORT' : config('DB_PORT')
     }
 }
 
