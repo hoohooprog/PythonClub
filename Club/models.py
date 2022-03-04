@@ -33,7 +33,7 @@ class Meeting(models.Model):
     def get_absolute_url(self):
 		
         """Returns the url to access a particular instance of Meeting.
-		   ie url of id, /myapplication/mymodelname/2"""
+		   ie url of id, /myapplication/mymodelname/2; helpful for testing on admin"""
 
         return reverse('model-detail-view', args=[str(self.id)])
 
@@ -153,3 +153,5 @@ class Event(models.Model):
         """String for representing the Event object (in Admin site)"""
 
         return self.event_title
+
+# references (diagrams, docs, tutorials etc) for the knowledge used in this file?
