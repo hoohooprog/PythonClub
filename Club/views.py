@@ -4,9 +4,9 @@
 
 # Add a view that returns all the resources (A5)
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from Club.models import Resource
+from Club.models import Resource, Meeting
 
 
 # Create your views here.
@@ -24,3 +24,25 @@ def view_resource(request):
 
 
 
+
+def getMeetings(request):
+    Meetings_list= Meeting.objects.all()
+    return render(request, 'Meetings.html', {'Meetings_list': Meetings_list})
+
+
+
+def meetingdetails(request, id):
+    meeting=get_object_or_404(Meeting, pk=id)
+    title = meeting.meeting_title
+    date = meeting.meeting_date
+    location = meeting.meeting_location
+    agenda = meeting.meeting_agenda
+    context = {
+        'title' : title,
+        'date' : date,
+        'location' : location,
+        'agenda' : agenda,
+    }
+    
+    return render(request, 'meetingdetails.html', context)
+    
