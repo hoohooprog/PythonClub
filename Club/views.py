@@ -7,6 +7,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from Club.models import Resource, Meeting
+from .forms import ResourceForm, MeetingForm
 
 
 # Create your views here.
@@ -45,4 +46,28 @@ def meetingdetails(request, id):
     }
     
     return render(request, 'meetingdetails.html', context)
-    
+
+# Create a form to add a resource and a form to add a meeting (A8)
+def newResource(request):
+    form = ResourceForm
+    if request.method == 'POST':
+        form=ResourceForm(request.POST)
+        if form.is_valid():
+            post=form.save(commit=True)
+            post.save()
+            form=ResourceForm()
+    else:
+        form=ResourceForm()
+    return render(request, 'newResource.html',{'form':form})
+
+def newMeeting(request):
+    form = Meeting
+    if request.method == 'POST':
+        form=MeetingForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=True)
+            post.save()
+            form=MeetingForm()
+    else:
+        form=MeetingForm()
+    return render(request, 'newMeeting.html',{'form':form})
