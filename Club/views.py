@@ -8,6 +8,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from Club.models import Resource, Meeting
 from .forms import ResourceForm, MeetingForm
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -47,6 +49,7 @@ def meetingdetails(request, id):
     
     return render(request, 'meetingdetails.html', context)
 
+@login_required
 # Create a form to add a resource and a form to add a meeting (A8)
 def newResource(request):
     form = ResourceForm
@@ -60,6 +63,7 @@ def newResource(request):
         form=ResourceForm()
     return render(request, 'newResource.html',{'form':form})
 
+@login_required
 def newMeeting(request):
     form = Meeting
     if request.method == 'POST':
@@ -71,3 +75,9 @@ def newMeeting(request):
     else:
         form=MeetingForm()
     return render(request, 'newMeeting.html',{'form':form})
+
+def loginmessage(request):
+    return render(request, 'loginmessage.html')
+
+def logoutmessage(request):
+    return render(request, 'logoutmessage.html')
