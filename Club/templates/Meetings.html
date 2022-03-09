@@ -1,3 +1,5 @@
+<!-- points to a base html template called 'base.html', exports following block content pertaining
+    to Meetings.html and combines it with base.html to present as Meetings.html -->
 {% extends 'base.html' %}
 {% block content %}
 <h1>Meetings</h1>
@@ -6,8 +8,14 @@
      <th>Name</th>
      <th>Description</th>
  </tr>
+
+ <!-- dict var Meetings_list: contains feature values of requested Meeting entity object
+     a loop in template tag to iterate through dict var Meetings_list and prints feature details
+    of requested entity in table
+     syntax for loop: {% for var in iterable} {% endfor %}-->
  {% for t in Meetings_list %}
    <tr>
+       <!-- syntax for accessing entity features: {{ iterator.featureName }} -->
        <td><a href="{% url 'meetingdetails' id=t.id %}">{{ t.meeting_title }}</a></td>
        <td>{{ t.meeting_date }}</td>
    </tr>
