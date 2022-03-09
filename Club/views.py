@@ -27,7 +27,10 @@ def view_resource(request):
 
 
 
-
+# function that responses to meetings.html via path in urls.py
+# grabs all Meeting entities and puts them into a list called 'Meetings_list'
+# renders data from Meetings_list in Meetings.html, somewhere along the way turns
+# request into response
 def getMeetings(request):
     Meetings_list= Meeting.objects.all()
     return render(request, 'Meetings.html', {'Meetings_list': Meetings_list})

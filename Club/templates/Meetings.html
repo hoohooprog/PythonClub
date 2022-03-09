@@ -9,9 +9,10 @@
      <th>Description</th>
  </tr>
 
- <!-- dict var Meetings_list: contains feature values of requested Meeting entity object
-     a loop in template tag to iterate through dict var Meetings_list and prints feature details
-    of requested entity in table
+ <!-- dict var Meetings_list: contains Meeting entities which in turn has their own attributes
+    according to stated model features.
+     a loop in template tag to iterate through dict var Meetings_list using iterator and prints feature details
+    of every entity contained in list into table
      syntax for loop: {% for var in iterable} {% endfor %}-->
  {% for t in Meetings_list %}
    <tr>
