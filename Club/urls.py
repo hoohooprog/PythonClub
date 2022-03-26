@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+# path('user_entered_url_endpoint', views.Method, name='name_of_this_path')
 
 urlpatterns = [
     path('', views.index, name='index'),

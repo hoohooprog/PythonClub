@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+# for pgsql connection
 import psycopg2
 from decouple import config
 

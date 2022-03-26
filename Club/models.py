@@ -32,8 +32,10 @@ class Meeting(models.Model):
 	# records on the website
     def get_absolute_url(self):
 		
-        """Returns the url to access a particular instance of Meeting.
-		   ie url of id, /myapplication/mymodelname/2; helpful for testing on admin"""
+        """
+            Returns the url to access a particular instance of Meeting.
+		   ie url of id, /myapplication/mymodelname/2; helpful for testing on admin, testing on admin? elaborate.
+        """
 
         return reverse('model-detail-view', args=[str(self.id)])
 

@@ -52,6 +52,7 @@ def meetingdetails(request, id):
     
     return render(request, 'meetingdetails.html', context)
 
+# decorator
 @login_required
 # Create a form to add a resource and a form to add a meeting (A8)
 def newResource(request):
@@ -61,6 +62,7 @@ def newResource(request):
         if form.is_valid():
             post=form.save(commit=True)
             post.save()
+            # make a new form
             form=ResourceForm()
     else:
         form=ResourceForm()
